@@ -1,0 +1,11 @@
+{
+  "name": "simpleserver",
+  "description": "A simple web server.",
+  "copyright": "Copyright © 2016, Kazuhiro Matsushima",
+  "authors": [
+    "Kazuhiro Matsushima"
+  ],
+  "dependencies": {
+    "darjeeling": "~>0.3.0"
+  }
+}
