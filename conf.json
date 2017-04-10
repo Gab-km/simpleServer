@@ -1,12 +1,14 @@
 {
-  "wwwroot": "./wwwroot",
+  "wwwroot": "/var/www",
   "hostname": "localhost",
   "port": 8080,
   "mime-types": {
+    "application/pdf": ["pdf"],
     "text/css": ["css"],
     "text/javascript": ["js"],
     "text/html": ["html", "htm"],
     "text/plain": ["txt", "conf", "def", "log"],
-    "image/png": ["png"]
+    "image/png": ["png"],
+    "image/gif": ["gif"]
   }
 }

@@ -28,7 +28,14 @@ abstract class HttpResponse
         auto filePath = conf.wwwroot ~ substituteRootPath(hrl.uriAddress);
         if (exists(filePath))
         {
-            return new HttpResponse200(hrl.httpVersion, filePath, hrl.methodName, conf.mimeTypes);
+            if (isFile(filePath))
+            {
+                return new HttpResponse200(hrl.httpVersion, filePath, hrl.methodName, conf.mimeTypes);
+            }
+            else
+            {
+                return new HttpResponse403(hrl.httpVersion);
+            }
         }
         else
         {
@@ -181,6 +188,28 @@ private:
             // Is it good to get from Accept in the request?
             return "text/html";
         }
+    }
+}
+
+class HttpResponse403 : HttpResponse
+{
+    this(char[] httpVersion)
+    {
+        http_version = httpVersion;
+        status_code = 403;
+        reason_phrase = "Forbidden";
+        response_body = [];
+    }
+
+protected:
+    override string makeContentLength()
+    {
+        return makeContentLengthZero();
+    }
+
+    override string makeConnection()
+    {
+        return makeConnectionClose();
     }
 }
 
